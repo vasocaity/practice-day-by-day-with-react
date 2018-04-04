@@ -22,6 +22,16 @@ const items = [
     id: 3,
     altText: 'Slide 3',
     caption: 'Slide 3'
+  },  
+  {
+    id: 4,
+    altText: 'Slide 4',
+    caption: 'Slide 4'
+  },
+  {
+    id: 5,
+    altText: 'Slide 5',
+    caption: 'Slide 5'
   }
 ];
 
@@ -84,7 +94,7 @@ class Carousel2 extends Component {
           {
             `.custom-tag {
                 max-width: 100%;
-                height: 350px;
+                height: 550px;
                 background: gray;
               }`
           }

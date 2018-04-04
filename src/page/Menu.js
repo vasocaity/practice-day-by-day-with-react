@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './images/banner.jpg'
+import logo from '../images/banner.jpg'
 import {
   Collapse,
   Navbar,
@@ -12,7 +12,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
-
 export default class Menu extends React.Component {
   constructor(props) {
     super(props);
@@ -63,8 +62,6 @@ export default class Menu extends React.Component {
           </Collapse>
         </Navbar>
         </div>
-         
-      
     );
   }
 }
