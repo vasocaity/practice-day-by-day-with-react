@@ -7,24 +7,15 @@ import {
 import Home from './page/Home'
 import Menu from './page/Menu'
 import Detail from './page/DetailNew'
-const HomePage = () => (
- <Home/>
-)
-
-const Header = () => (
-  <Menu/>
-)
-
-const DetailNew = () => (
-  <Detail/>
-)
+import Component2 from './Footer2'
 
 const BasicExample = () => (
   <Router>
     <div>
-    <Header/>
-      <Route exact path="/" component={HomePage}/>
-      <Route path="/detail/:id" component={DetailNew}/>
+    <Menu/>
+      <Route exact path="/" component={Home}/>
+      <Route path="/detail/:id" component={Detail}/>
+      <Route path="/components" component={Component2}/>
     </div>
   </Router>
 )
