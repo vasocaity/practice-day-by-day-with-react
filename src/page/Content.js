@@ -9,7 +9,8 @@ export default class Content extends React.Component {
       items: [],
       page:1,
       total: 0,
-      isLoggedIn: false
+      isLoggedIn: false,
+      slideNew: []
     }
     this.componentDidMount = this.componentDidMount.bind(this);
     this.load_contents = this.load_contents.bind(this);
@@ -39,7 +40,14 @@ export default class Content extends React.Component {
           items: res.data.map( ( {Nid, nameNews} ) => {
             return <p key={Nid}>{nameNews}</p> // =  <a href="#">{link}</a> in component ContenItem
         }),
-        total: res.total-1
+        total: res.total-1,
+        slideNew: res.data.map( ( {Nid, nameNews} ) => {
+          return {
+            id: Nid,
+            altText: nameNews,
+            caption: nameNews
+          }
+      })
         });
     })
     .catch((error) => {
@@ -69,7 +77,7 @@ export default class Content extends React.Component {
       });
 }
   render() {
-    let {items,page,total} = this.state;
+    let {items,page,total,slideNew} = this.state;
     let {track_page} = this.props;
     const button = (total!=page) ? (
       <button onClick={()=>this.load_contents(this.state.page+1)} 
@@ -81,7 +89,7 @@ export default class Content extends React.Component {
     );
     return (
       <Container>
-       <Carousel2/>
+       <Carousel2 slide={this.state.slideNew}/>
         <br/>
         <ContentItem  item={items}/>
         {button}

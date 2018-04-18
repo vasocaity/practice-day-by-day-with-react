@@ -6,46 +6,49 @@ import {
   CarouselIndicators,
   CarouselCaption
 } from 'reactstrap';
+import images from './../images/16.png';
+let items = [
 
-const items = [
-  {
-    id: 1,
-    altText: 'Slide 1',
-    caption: 'Slide 1'
-  },
-  {
-    id: 2,
-    altText: 'Slide 2',
-    caption: 'Slide 2'
-  },
-  {
-    id: 3,
-    altText: 'Slide 3',
-    caption: 'Slide 3'
-  },  
-  {
-    id: 4,
-    altText: 'Slide 4',
-    caption: 'Slide 4'
-  },
-  {
-    id: 5,
-    altText: 'Slide 5',
-    caption: 'Slide 5'
-  }
 ];
 
 class Carousel2 extends Component {
   constructor(props) {
     super(props);
-    this.state = { activeIndex: 0 };
+    this.state = { 
+      activeIndex: 0 ,
+    };
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.goToIndex = this.goToIndex.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
+    this.postData = this.postData.bind(this);
+    window.addEventListener('load', this.postData);
   }
-
+  postData() {
+    console.log("work");
+    fetch('http://localhost/api/fetch_pagesNew.php?page=1', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      method: 'GET', 
+    })
+    .then(response => response.json()) // parses response to JSON
+    .then((res) => {
+      // this.setState({
+      //   slide: res.data.map( ( {Nid, nameNews} ) => {
+      //     return {
+      //       id: Nid,
+      //       altText: nameNews,
+      //       caption: nameNews
+      //     }
+      // })
+      // });
+      // items = this.state.slide;
+      // console.log(this.state.slide);
+  })
+  }
   onExiting() {
     this.animating = true;
   }
@@ -72,22 +75,23 @@ class Carousel2 extends Component {
   }
 
   render() {
-    const { activeIndex } = this.state;
-
-    const slides = items.map((item) => {
+    const { activeIndex} = this.state;
+    let {slide} = this.props;
+    items = slide.map((slide) => {
+      //{images} style={{width:'100%'}}
       return (
         <CarouselItem
           className="custom-tag"
           tag="div"
-          key={item.id}
+          key={slide.id}
           onExiting={this.onExiting}
           onExited={this.onExited}
         >
-          <CarouselCaption className="text-danger" captionText={item.caption} captionHeader={item.caption} />
+        <img src={require('./../images/'+slide.id+'.png')} style={{width:'100%'}}/>
+          <CarouselCaption className="text-defalut" captionText='' captionHeader={slide.caption} />
         </CarouselItem>
       );
     });
-
     return (
       <div>
         <style>
@@ -105,7 +109,7 @@ class Carousel2 extends Component {
           previous={this.previous}
         >
           <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
-          {slides}
+          {items}
           <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
           <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
         </Carousel>
