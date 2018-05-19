@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../images/banner.jpg'
 import {
   Collapse,
   Navbar,
@@ -12,6 +11,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
+import LoginForm from './LoginForm';
 export default class Menu extends React.Component {
   constructor(props) {
     super(props);
@@ -28,22 +28,15 @@ export default class Menu extends React.Component {
   }
   render() {
     return (
-        <div>
-            <img src={logo} style={{width:'100%',height:'250px',clear:'both'}} />
-            <Navbar color="faded" light expand="md">
-            <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <header className="sticky-top navbar-light bg-light">
+           <Navbar color="faded" light expand="md" style={{backgroundColor: '#DFDDDD',marginBottom:'10px'}}>
+            <NavbarBrand href="/">Home</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar>
-              <NavItem>
-                <NavLink href="/components/">Components</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/vasocaity">Github</NavLink>
-              </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  Options
+                Knowledge sources
                 </DropdownToggle>
                 <DropdownMenu >
                   <DropdownItem>
@@ -58,10 +51,23 @@ export default class Menu extends React.Component {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
+              <NavItem>
+                <NavLink href="/components/">Events</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/vasocaity" target="_blank">Github</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink style={{padding:'0px'}}> <LoginForm/></NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
-        </div>
+        </header>
     );
   }
 }

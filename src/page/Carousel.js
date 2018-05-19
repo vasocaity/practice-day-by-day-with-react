@@ -6,10 +6,8 @@ import {
   CarouselIndicators,
   CarouselCaption
 } from 'reactstrap';
-import images from './../images/16.png';
-let items = [
 
-];
+let items = [];
 
 class Carousel2 extends Component {
   constructor(props) {
@@ -22,32 +20,6 @@ class Carousel2 extends Component {
     this.goToIndex = this.goToIndex.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
-    this.postData = this.postData.bind(this);
-    window.addEventListener('load', this.postData);
-  }
-  postData() {
-    console.log("work");
-    fetch('http://localhost/api/fetch_pagesNew.php?page=1', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      method: 'GET', 
-    })
-    .then(response => response.json()) // parses response to JSON
-    .then((res) => {
-      // this.setState({
-      //   slide: res.data.map( ( {Nid, nameNews} ) => {
-      //     return {
-      //       id: Nid,
-      //       altText: nameNews,
-      //       caption: nameNews
-      //     }
-      // })
-      // });
-      // items = this.state.slide;
-      // console.log(this.state.slide);
-  })
   }
   onExiting() {
     this.animating = true;
@@ -87,7 +59,7 @@ class Carousel2 extends Component {
           onExiting={this.onExiting}
           onExited={this.onExited}
         >
-        <img src={require('./../images/'+slide.id+'.png')} style={{width:'100%'}}/>
+        <img src={require('./../images/'+slide.id+'.png')} style={{width:'100%'}} alt=""/>
           <CarouselCaption className="text-defalut" captionText='' captionHeader={slide.caption} />
         </CarouselItem>
       );
@@ -103,6 +75,7 @@ class Carousel2 extends Component {
               }`
           }
         </style>
+        <br/>
         <Carousel
           activeIndex={activeIndex}
           next={this.next}

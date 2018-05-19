@@ -77,9 +77,9 @@ export default class Content extends React.Component {
       });
 }
   render() {
-    let {items,page,total,slideNew} = this.state;
-    let {track_page} = this.props;
-    const button = (total!=page) ? (
+    let {items,page,total} = this.state;
+    //let {track_page} = this.props;
+    const button = (total!==page) ? (
       <button onClick={()=>this.load_contents(this.state.page+1)} 
       style={{left:'90%',marginTop:'30px',position:'relative'}}>
       more
@@ -88,12 +88,15 @@ export default class Content extends React.Component {
       <div></div>
     );
     return (
-      <Container>
+      <div><br/><br/>
+       <Container>
        <Carousel2 slide={this.state.slideNew}/>
-        <br/>
+       <br/>
         <ContentItem  item={items}/>
         {button}
-      </Container>
+      </Container> 
+      </div>
+      
     );
   }
 }

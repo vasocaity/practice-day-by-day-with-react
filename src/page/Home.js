@@ -1,7 +1,6 @@
 import React, {
     Component
   } from 'react';
-  import Carousel2 from './Carousel';
   import Content from './Content';
   import Footer2 from '../Footer2';
   //import LoginFacebook from './LoginFacebook';
@@ -27,13 +26,11 @@ import React, {
         user
       } = this.state
       if (user)
-        return ( < div > < img src = {
-            `${user.photoURL}`
-          }
-          />{user ? `Hi, ${user.displayName}!` : 'Hi!'}</div > )
+        return ( < div > <img  src={require(+user.photoURL+'')} alt=""/>
+          {user ? `Hi, ${user.displayName}!` : 'Hi!'}</div > )
     }
     render() {
-      let {currentTime,track_page} = this.state;
+      //let {currentTime,track_page} = this.state;
       return(
         <div>
         <Content/>
