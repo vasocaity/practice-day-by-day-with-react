@@ -3,6 +3,7 @@ import React, {
   } from 'react';
   import Content from './Content';
   import Footer2 from '../Footer2';
+
   //import LoginFacebook from './LoginFacebook';
   class Home extends Component {
     constructor(props) {
@@ -15,6 +16,7 @@ import React, {
       }
       this.handelFooterCilked = this.handelFooterCilked.bind(this);
     }
+
     handelFooterCilked(time) {
       this.setState({
         currentTime: time
@@ -31,6 +33,7 @@ import React, {
     }
     render() {
       //let {currentTime,track_page} = this.state;
+      
       return(
         <div>
         <Content/>

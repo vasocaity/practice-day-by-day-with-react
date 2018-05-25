@@ -15,18 +15,20 @@ import LoginForm from './LoginForm';
 export default class Menu extends React.Component {
   constructor(props) {
     super(props);
-
-    this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
-    };
+          isOpen: false
+        };
+    this.toggle = this.toggle.bind(this);
+    
   }
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
+ 
   render() {
+
     return (
         <header className="sticky-top navbar-light bg-light">
            <Navbar color="faded" light expand="md" style={{backgroundColor: '#DFDDDD',marginBottom:'10px'}}>
