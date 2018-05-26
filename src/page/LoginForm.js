@@ -26,7 +26,9 @@ class LoginForm extends Component {
             email: '',
             password: '',
             userIsLogIn: false,
-            userInformation: ''
+            userInformation: '',
+            dataError: '',
+
         }
         this.toggle = this.toggle.bind(this);
         this.login = this.login.bind(this);
@@ -47,17 +49,25 @@ class LoginForm extends Component {
                     let data = JSON.stringify(result);
                     if (responseJSON.item) {
                         this.setState({
-                            modal: false
+                            modal: false,
+                            dataError: ''
                         });
                         //  console.log(this.state.userInformation);    
                         sessionStorage.setItem('userData', data);
+
                         window.location.reload();
 
                     } else {
-                        console.log("login error");
+                        this.setState({
+                            dataError: 'please input your correct email or password'
+                        })
                     }
 
                 });
+        } else {
+            this.setState({
+                dataError: 'please input your email and password'
+            });
         }
     }
     componentWillMount() {
@@ -99,12 +109,14 @@ class LoginForm extends Component {
             <FormGroup>
                 <Label for="exampleEmail">Email</Label>
                 <Input type="email" name="email" id="exampleEmail" placeholder="email ..." onChange={this.onChange} />
+
             </FormGroup>
                 <FormGroup>
                     <Label for="examplePassword">Password</Label>
                     <Input type="password" name="password" id="examplePassword" placeholder="password ..." onChange={this.onChange} />
                 </FormGroup>
         </Form>
+        <span style={{color:'red'}}>{this.state.dataError}</span>
         </ModalBody>
         <ModalFooter>
             <Button color="primary" onClick={this.login}>Login</Button>{' '}

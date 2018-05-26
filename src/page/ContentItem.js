@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListGroup, ListGroupItem} from 'reactstrap';
-import { BrowserRouter as Router, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 export default class ContentItem extends React.Component {
   render() {
     let {item} = this.props;

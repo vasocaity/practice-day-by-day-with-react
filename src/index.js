@@ -14,9 +14,9 @@ import registerServiceWorker from './registerServiceWorker';
 //     }
 // }
 
-const AppWithRouter = () => (
-    <App />
-)
+// const AppWithRouter = () => (
+//     <App />
+// )
 
-ReactDOM.render(<AppWithRouter />, document.getElementById('root'))
+ReactDOM.render(<App/>, document.getElementById('root'))
 registerServiceWorker();
